@@ -1,0 +1,11 @@
+C:\Users\asus\Desktop\курсовая\newCursach\bin\Debug\newCursach.exe.config
+C:\Users\asus\Desktop\курсовая\newCursach\bin\Debug\newCursach.exe
+C:\Users\asus\Desktop\курсовая\newCursach\bin\Debug\newCursach.pdb
+C:\Users\asus\Desktop\курсовая\newCursach\obj\Debug\newCursach.csprojAssemblyReference.cache
+C:\Users\asus\Desktop\курсовая\newCursach\obj\Debug\newCursach.Form1.resources
+C:\Users\asus\Desktop\курсовая\newCursach\obj\Debug\newCursach.calibrationForm.resources
+C:\Users\asus\Desktop\курсовая\newCursach\obj\Debug\newCursach.Properties.Resources.resources
+C:\Users\asus\Desktop\курсовая\newCursach\obj\Debug\newCursach.csproj.GenerateResource.cache
+C:\Users\asus\Desktop\курсовая\newCursach\obj\Debug\newCursach.csproj.CoreCompileInputs.cache
+C:\Users\asus\Desktop\курсовая\newCursach\obj\Debug\newCursach.exe
+C:\Users\asus\Desktop\курсовая\newCursach\obj\Debug\newCursach.pdb

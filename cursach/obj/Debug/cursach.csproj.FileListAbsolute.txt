@@ -1,0 +1,11 @@
+C:\Users\asus\Desktop\курсовая\cursach\bin\Debug\cursach.exe.config
+C:\Users\asus\Desktop\курсовая\cursach\bin\Debug\cursach.exe
+C:\Users\asus\Desktop\курсовая\cursach\bin\Debug\cursach.pdb
+C:\Users\asus\Desktop\курсовая\cursach\obj\Debug\cursach.csprojAssemblyReference.cache
+C:\Users\asus\Desktop\курсовая\cursach\obj\Debug\cursach.Form1.resources
+C:\Users\asus\Desktop\курсовая\cursach\obj\Debug\cursach.calibrationForm.resources
+C:\Users\asus\Desktop\курсовая\cursach\obj\Debug\cursach.Properties.Resources.resources
+C:\Users\asus\Desktop\курсовая\cursach\obj\Debug\cursach.csproj.GenerateResource.cache
+C:\Users\asus\Desktop\курсовая\cursach\obj\Debug\cursach.csproj.CoreCompileInputs.cache
+C:\Users\asus\Desktop\курсовая\cursach\obj\Debug\cursach.exe
+C:\Users\asus\Desktop\курсовая\cursach\obj\Debug\cursach.pdb
