@@ -28,5 +28,5 @@ void loop() {
   int angle = angle_str.toInt();
   Serial.println(angle);
   myServo.write(angle);
-  //delay(500);
+  delay(1000);
   }

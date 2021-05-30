@@ -195,7 +195,7 @@ void loop() {
     //angle3 > 180 ? angle3 = 180 : angle3;
     currentAngle = (angle0 + angle1 + angle2) / 3;
     Serial.println(currentAngle);
-    delay(1100);
+    delay(1500);
     //Servo.write(currentAngle);
   
   // put your main code here, to run repeatedly:

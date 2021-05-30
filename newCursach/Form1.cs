@@ -100,6 +100,9 @@ namespace newCursach
             max2Label.Text = "max2: " + serialPort4.ReadLine();
             min0Label.Text = "min0: " + serialPort4.ReadLine();
             min2Label.Text = "min2: " + serialPort4.ReadLine();
+            File.Delete("C:/Users/asus/Desktop/kursovaya/newCursach/output_servo.txt");
+            File.Delete("C:/Users/asus/Desktop/kursovaya/newCursach/output.txt");
+            File.Delete("C:/Users/asus/Desktop/kursovaya/newCursach/output_excepts.txt");
             Thread.Sleep(1200);
             readThread = new Thread(new ThreadStart(Count));
             readThread.Start();
