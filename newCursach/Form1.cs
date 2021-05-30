@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO.Ports;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -19,28 +20,16 @@ namespace newCursach
         public Form1()
         {
             InitializeComponent();
-            //string[] ports = SerialPort.GetPortNames();
             serialPortTemp.BaudRate = 9600;
             serialPortTemp.DtrEnable = true;
             serialPort3.BaudRate = 9600;
             serialPort3.DtrEnable = true;
             serialPort4.BaudRate = 9600;
-            serialPort4.DtrEnable = true;/*
-            for (int i = 0; i < ports.Length; i++)
-            {
-                serialPortTemp.PortName = ports[i];
-                Thread.Sleep(2000);
-                serialPortTemp.Open();
-                string message = serialPortTemp.ReadLine();
-                if (message == "I AM SERVO") serialPort3.PortName = ports[i];
-                serialPortTemp.Close();
-            }*/
-            
-            //startButton.Enabled = false;
+            serialPort4.DtrEnable = true;
             serialPort3.PortName = "COM3";
-            //serialPort3.Open();
             serialPort4.PortName = "COM4";
-            //serialPort4.Open();
+            startButton.Enabled = false;
+            stopButton.Enabled = false;
         }
 
         public static bool calibrationFlag { get; set; }
@@ -73,55 +62,45 @@ namespace newCursach
         bool startFlag;
         public void startButton_Click(object sender, EventArgs e)
         {
-
-            //serialPort4.PortName = Form1.potenzPort;
             if (!serialPort4.IsOpen)
             {
                 serialPort4.Open();
+                serialPort4.DiscardInBuffer();
                 Thread.Sleep(1500);
             }
+            calibrationButton.Enabled = false;
+            stopButton.Enabled = true;
             serialPort4.WriteLine("START");
-
             this.startButton.Enabled = false;
-            /*while (true)
-            {
-                serialPort4.WriteLine("START");
-                max0Label.Text = "+" + input;
-                if (input.Contains("end cycle"))
-                    break;
-                
-            }*/
             max0Label.Text = "start writing";
-            Thread.Sleep(1000);
-
+            Thread.Sleep(1500);
             serialPort4.WriteLine(Form1.max0);
-            Thread.Sleep(1000);
+            Thread.Sleep(1500);
             serialPort4.WriteLine(Form1.max1);
-            Thread.Sleep(1000);
+            Thread.Sleep(1500);
             serialPort4.WriteLine(Form1.max2);
-            Thread.Sleep(1000);
-
-            //serialPort4.WriteLine(Form1.max3);
+            Thread.Sleep(1500);
             serialPort4.WriteLine(Form1.min0);
-            Thread.Sleep(1000);
+            Thread.Sleep(1500);
             serialPort4.WriteLine(Form1.min1);
-            Thread.Sleep(1000);
+            Thread.Sleep(1500);
             serialPort4.WriteLine(Form1.min2);
-            Thread.Sleep(1000);
+            Thread.Sleep(1500);
             serialPort4.WriteLine(Form1.min3);
-            Thread.Sleep(1000);
+            Thread.Sleep(1500);
             if (!serialPort3.IsOpen)
             {
                 serialPort3.Open();
-                Thread.Sleep(1500);
+                serialPort3.DiscardInBuffer();
+                Thread.Sleep(1600);
             }
-            //serialPort3.WriteLine("START");
-            Thread.Sleep(500);
-            
-            
-            
-            
+            serialPort3.WriteLine("START");
             startFlag = false;
+            max0Label.Text = "max0: " + serialPort4.ReadLine();
+            max2Label.Text = "max2: " + serialPort4.ReadLine();
+            min0Label.Text = "min0: " + serialPort4.ReadLine();
+            min2Label.Text = "min2: " + serialPort4.ReadLine();
+            Thread.Sleep(1200);
             readThread = new Thread(new ThreadStart(Count));
             readThread.Start();
         }
@@ -137,11 +116,17 @@ namespace newCursach
                 try
                 {
                     angle_str = serialPort4.ReadLine();
+                    Thread.Sleep(1000);
                     serialPort3.WriteLine(angle_str);
+                    File.AppendAllText("C:/Users/asus/Desktop/kursovaya/newCursach/output.txt", angle_str);
+                    string str;
+                    str = serialPort3.ReadLine();
+                    File.AppendAllText("C:/Users/asus/Desktop/kursovaya/newCursach/output_servo.txt", str);
                 }
-                catch
+                catch (Exception e)
                 {
                     startFlag = true;
+                    File.AppendAllText("C:/Users/asus/Desktop/kursovaya/newCursach/output_excepts.txt", e.Message);
                 }
                 Thread.Sleep(100);
             }
@@ -153,6 +138,8 @@ namespace newCursach
         private void stopButton_Click(object sender, EventArgs e)
         {
             startFlag = true;
+            calibrationButton.Enabled = true;
+            stopButton.Enabled = false;
             this.startStopLabel.Text = readThread.ThreadState.ToString();
             this.statusLabel.Text = "stop reading";
             this.startButton.Enabled = true;

@@ -29,6 +29,7 @@ namespace newCursach
             {
                 maxButton.Enabled = false;
                 serialPort4.Open();
+                serialPort4.DiscardInBuffer();
                 Thread.Sleep(1500);
             }
             maxButton.Enabled = true;
@@ -46,6 +47,13 @@ namespace newCursach
         private void maxButton_Click(object sender, EventArgs e)
         {
             this.max0Label.Text = "Чтение начато";
+            if (!serialPort4.IsOpen)
+            {
+                maxButton.Enabled = false;
+                serialPort4.Open();
+                serialPort4.DiscardInBuffer();
+                Thread.Sleep(1500);
+            }
             serialPort4.WriteLine("MAX");
             Form1.max0 = serialPort4.ReadLine();
             Form1.max1 = serialPort4.ReadLine();
@@ -76,6 +84,7 @@ namespace newCursach
             maxButton.Enabled = true;
             repeatButton.Enabled = false;
             countinueButton.Enabled = false;
+            serialPort4.Close();
         }
 
         private void countinueButton_Click(object sender, EventArgs e)

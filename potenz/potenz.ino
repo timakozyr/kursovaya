@@ -11,12 +11,11 @@ void repeat() {
   while (str != "MAX\n") {
     str = Serial.readString();
     str[str.length()] = '\0';
-    if (str == "START\n") {digitalWrite(13, HIGH); loop();}
   }
   Serial.println(analogRead(A3)); // max0
   Serial.println(analogRead(A2)); // max1
   Serial.println(analogRead(A1)); // max2
-  Serial.println(analogRead(A0)); // max3
+  //Serial.println(analogRead(A0)); // max3
   digitalWrite(13, HIGH);
   // фиксируем минимальные значения напряжений после нажатия кнопки пользователем
   str = "0";
@@ -104,20 +103,17 @@ void start(){
     min3_str = Serial.readString();
   } while (min3_str == "");
   max0 = max0_str.toInt();
-  Serial.println(max0_str);
+  Serial.println(max0);
   max1 = max1_str.toInt();
-  //Serial.println(max1);
   max2 = max2_str.toInt();
   Serial.println(max2);
-  max3 = max3_str.toInt();
-  //Serial.println(max3);
+  //max3 = max3_str.toInt();
   min0 = min0_str.toInt();
   Serial.println(min0);
   min1 = min1_str.toInt();
-  //Serial.println(min1);
   min2 = min2_str.toInt();
   Serial.println(min2);
-  min3 = min3_str.toInt();
+  //min3 = min3_str.toInt();
   loop();
 }
 
@@ -199,6 +195,7 @@ void loop() {
     //angle3 > 180 ? angle3 = 180 : angle3;
     currentAngle = (angle0 + angle1 + angle2) / 3;
     Serial.println(currentAngle);
+    delay(1100);
     //Servo.write(currentAngle);
   
   // put your main code here, to run repeatedly:
